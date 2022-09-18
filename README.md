@@ -23,7 +23,7 @@
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
 | name              | string     | null: false                    |
-| description       | string     | null: false                    |
+| description       | text       | null: false                    |
 | category_id       | integer    |null: false                     |
 | item_condition_id | integer    | null: false                    |
 | shipping_fee_id   | integer    | null: false                    |
@@ -46,7 +46,7 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| items         | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 | user          | references | null: false, foreign_key: true |
 
 ### Association
@@ -60,12 +60,14 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| post_code        | references | null: false,foreign_key: true  |
+| post_code        | string     | null: false                    |
 | prefecture_id    | integer    | null: false                    |
-| city             | references | null: false,foreign_key: true  |
-| address          | references | null: false,foreign_key: true  |
-| building_name    | references | foreign_key: true              |
-| phone_number     | references | null: false,foreign_key: true  |
+| city             | string     | null: false                    |
+| address          | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| item             | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
