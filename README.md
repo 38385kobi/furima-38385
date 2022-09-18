@@ -56,7 +56,7 @@
 - has_one : destination
 
 
-## destination テーブル
+## destinations テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
@@ -66,8 +66,8 @@
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
 | phone_number     | string     | null: false                    |
-| item             | string     | null: false                    |
-| user             | string     | null: false                    |
+| oder             | references | null: false, foreign_key: true |
+
 
 ### Association
 
