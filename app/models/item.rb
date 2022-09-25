@@ -7,15 +7,17 @@ class Item < ApplicationRecord
   belongs_to :delivery_date
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :category_id, presence: true, numericality: { other_than: 0, message: "can't be blank" } 
-  validates :item_condition_id, presence: true, numericality: { other_than: 0, message: "can't be blank" }
-  validates :shipping_fee_id, presence: true, numericality: { other_than: 0, message: "can't be blank" }
-  validates :prefecture_id, presence: true, numericality: { other_than: 0, message: "can't be blank" }
-  validates :delivery_date_id, presence: true, numericality: { other_than: 0, message: "can't be blank" }
-  validates :price, presence: true, format: { with: /\A[0-9]+\z/,allow_blank: true}, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999,allow_blank: true}
-  validates :image, presence: true
-
+  with_options presence: true do
+    validates :name
+    validates :description
+    validates :category_id, numericality: { other_than: 0, message: "can't be blank" } 
+    validates :item_condition_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :shipping_fee_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :delivery_date_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :price, format: { with: /\A[0-9]+\z/,allow_blank: true}, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999,allow_blank: true}
+    validates :image
+  end
 end
