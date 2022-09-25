@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :sell_item, only: [:index, :create]
   def index
     @order_destination = OrderDestination.new
@@ -23,6 +24,7 @@ class OrdersController < ApplicationController
 
   def sell_item
     @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 
   def pay_item
